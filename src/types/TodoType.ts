@@ -11,6 +11,8 @@ export interface TodoItem {
   createdAt: string;
 }
 
-type TodoType = TodoItem[];
+interface TodoType {
+  data: TodoItem[];
+}
 
 export default TodoType;
