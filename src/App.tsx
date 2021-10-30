@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchTodo } from "./redux/slice/todoSlice";
 
 import TodoList from "./components/TodoList";
+import NewTodo from "./components/NewTodo";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function App() {
     <div className="AppContainer">
       <h1>Test Majoo</h1>
       <TodoList />
+      <NewTodo />
     </div>
   );
 }

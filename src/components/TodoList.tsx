@@ -16,6 +16,7 @@ const TodoList = () => {
             return (
               <div key={item.id} className="ListItem">
                 <h3>{item.title}</h3>
+                <p>{item.description}</p>
                 <p>{item.createdAt}</p>
               </div>
             );
@@ -27,6 +28,7 @@ const TodoList = () => {
             return (
               <div key={item.id} className="ListItem">
                 <h3>{item.title}</h3>
+                <p>{item.description}</p>
                 <p>{item.createdAt}</p>
               </div>
             );

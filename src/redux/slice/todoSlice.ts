@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Dispatch } from "@reduxjs/toolkit";
-import TodoType, { TodoItem } from "../../types/TodoType";
+import TodoType, { TodoItem, TodoStatus } from "../../types/TodoType";
 import axios, { AxiosResponse } from "axios";
 import orderBy from "lodash.orderby";
 
@@ -15,13 +15,18 @@ export const todoSlice = createSlice({
   reducers: {
     initialTodo: (state, action: PayloadAction<TodoItem[]>) => {
       state.data = action.payload;
-      const notDone = action.payload.filter((item) => item.status === 0);
-      const done = action.payload.filter((item) => item.status === 1);
+      const notDone = action.payload.filter(
+        (item) => item.status === TodoStatus.NOT_DONE
+      );
+      const done = action.payload.filter(
+        (item) => item.status === TodoStatus.DONE
+      );
       state.notDone = orderBy(notDone, ["createdAt"], ["asc"]);
       state.done = orderBy(done, ["createdAt"], ["desc"]);
     },
     createTodo: (state, action: PayloadAction<TodoItem>) => {
       state.data.push(action.payload);
+      state.notDone.push(action.payload);
     },
     deleteTodo: (state, action: PayloadAction<number>) => {
       state.data = state.data.filter((item) => item.id !== action.payload);

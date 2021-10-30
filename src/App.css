@@ -18,3 +18,20 @@
   border-radius: 8px;
   margin-bottom: 0.75em;
 }
+
+.NewTodoForm {
+  margin: 2em 0;
+}
+
+.NewTodoTitle {
+  margin: 0.75em 0;
+}
+
+.NewTodoLabel {
+  display: block;
+}
+
+.NewTodoButton {
+  padding: 0.5em 1em;
+  margin-top: 0.75em;
+}
