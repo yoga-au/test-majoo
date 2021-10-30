@@ -14,10 +14,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="AppContainer">
       <h1>Test Majoo</h1>
       <TodoList />
-    </>
+    </div>
   );
 }
 

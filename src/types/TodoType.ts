@@ -13,6 +13,8 @@ export interface TodoItem {
 
 interface TodoType {
   data: TodoItem[];
+  done: TodoItem[];
+  notDone: TodoItem[];
 }
 
 export default TodoType;
