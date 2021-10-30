@@ -28,6 +28,19 @@ export const todoSlice = createSlice({
       state.data.push(action.payload);
       state.notDone.push(action.payload);
     },
+    updateTodo: (state, action: PayloadAction<TodoItem>) => {
+      const editIndex = state.data.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.data[editIndex] = action.payload;
+
+      const notDone = state.data.filter(
+        (item) => item.status === TodoStatus.NOT_DONE
+      );
+      const done = state.data.filter((item) => item.status === TodoStatus.DONE);
+      state.notDone = orderBy(notDone, ["createdAt"], ["asc"]);
+      state.done = orderBy(done, ["createdAt"], ["desc"]);
+    },
     deleteTodo: (state, action: PayloadAction<TodoItem>) => {
       state.data = state.data.filter((item) => item.id !== action.payload.id);
 
@@ -44,7 +57,8 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { initialTodo, createTodo, deleteTodo } = todoSlice.actions;
+export const { initialTodo, createTodo, updateTodo, deleteTodo } =
+  todoSlice.actions;
 export default todoSlice.reducer;
 
 // async thunk
