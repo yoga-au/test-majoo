@@ -28,8 +28,18 @@ export const todoSlice = createSlice({
       state.data.push(action.payload);
       state.notDone.push(action.payload);
     },
-    deleteTodo: (state, action: PayloadAction<number>) => {
-      state.data = state.data.filter((item) => item.id !== action.payload);
+    deleteTodo: (state, action: PayloadAction<TodoItem>) => {
+      state.data = state.data.filter((item) => item.id !== action.payload.id);
+
+      if (action.payload.status === TodoStatus.DONE) {
+        state.done = state.done.filter((item) => item.id !== action.payload.id);
+      }
+
+      if (action.payload.status === TodoStatus.NOT_DONE) {
+        state.notDone = state.notDone.filter(
+          (item) => item.id !== action.payload.id
+        );
+      }
     },
   },
 });
